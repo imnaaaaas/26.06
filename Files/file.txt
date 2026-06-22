@@ -1,0 +1,5 @@
+# Welcome to My Website
+This is the very first paragraph of my text.
+# About Me
+I am learning how to build a static site generator from scratch.
+This is another normal line of text.

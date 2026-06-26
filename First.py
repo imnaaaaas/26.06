@@ -61,19 +61,27 @@ support_queue.enqueue("Ticket #1: Password Reset")
 support_queue.enqueue("Ticket #2: Billing Error")
 support_queue.enqueue("Ticket #3: App Crashing")
 
+
+
 print("--- INITIAL WAITING QUEUE ---")
 support_queue.print()
 
 
 #finish ticket 1
-done_ticket1 = support_queue.dequeue()
-resolved_stack.push(done_ticket1)
+done_ticket1 = support_queue.dequeue() #gives first in queue
+resolved_stack.push(done_ticket1) #becomes head
 
-done_ticket2=support_queue.dequeue()
-resolved_stack.push(done_ticket2)
+done_ticket2=support_queue.dequeue()#gives second in queue
+resolved_stack.push(done_ticket2) #becomes head
 
 print("\n--- QUEUE AFTER AGENT WORKS ---")
-support_queue.print()
+support_queue.print() #rigshi dganan
 
 print("\n--- RECENTLY RESOLVED HISTORY (STACK) ---")
-resolved_stack.print()
+resolved_stack.print() #already done clients
+
+
+print("\n last costumer:")
+print(resolved_stack.pop())
+
+#client comes goes into queue. when agent is done with client, it goes to stack. if we want to see last operaiton we do pop.

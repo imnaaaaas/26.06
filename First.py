@@ -1,6 +1,8 @@
 
 from collections import deque
 
+#client comes goes into queue. when agent is done with client, it goes to stack.
+#if we want to see last operaiton we do pop.
 class Node:
     def __init__(self,data):
         self.data=data
@@ -9,28 +11,45 @@ class Node:
 class Queue: #support_queue (waiting line)
     def __init__(self):
         self.head=None
-    
+        self.tail=None
+
+    #we use tail for optimization O(1) head looks at first,and tail look at last. its add automaticly at back
     def enqueue(self,data):
         new_node=Node(data)
         if self.head is None:
             self.head=new_node
+            self.tail=new_node
+            return
+        self.tail.next=new_node #looks after none of last client
+        self.tail=new_node #rewrite last to new last user
+        """before
+        if self.head is None:
+            self.head=new_mode
             return
         current=self.head
-        while current.next is not None:
+        while current.next is not None: while loop was O(n) without it it becomes O(1)
             current=current.next
         current.next=new_node
-    
+        """
+
+    #working on prioratization
+
+
+
     def dequeue(self):
         if self.head is None:
             return "No users"
         dl_data =self.head.data
         self.head=self.head.next
         return dl_data
+    
     def print(self):
         current=self.head
         while current:
             print(current.data)
             current=current.next
+
+
 
 class Stack: #resolved_stack 
     def __init__(self):
@@ -51,6 +70,16 @@ class Stack: #resolved_stack
         while current:
             print(current.data)
             current=current.next
+
+
+
+def reopen_ticket(Queue, Stack):
+    return_client = Stack.pop()
+    if return_client != "No User:":
+        Queue.enqueue(return_client)
+        print(f" '{return_client}' reopen and is in queue!")
+    else:
+        print("history clean, cant add any")
 
 
 support_queue = Queue()
@@ -81,7 +110,17 @@ print("\n--- RECENTLY RESOLVED HISTORY (STACK) ---")
 resolved_stack.print() #already done clients
 
 
-print("\n last costumer:")
-print(resolved_stack.pop())
+#if we want redo and client goes again in queeu
+#reopen_ticket(support_queue, resolved_stack)
 
-#client comes goes into queue. when agent is done with client, it goes to stack. if we want to see last operaiton we do pop.
+
+
+
+
+
+        #study for 
+#space time complexity amortimes time complexity recursions
+# memoization 
+#dynamic progrmainc algorithm
+# divede and cobquer
+#duvude

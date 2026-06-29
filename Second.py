@@ -74,14 +74,14 @@ class LinkedList:
         self.head=None
     
     def append(self,data):
-        new_node=Node(data)
-        if self.head is None:
-            self.head=new_node
+        new_node=Node(data) #create new node
+        if self.head is None: #if its empty
+            self.head=new_node #head become first and ext
             return
-        current=self.head
-        while current.next is not None:
-            current=current.next
-        current.next=new_node
+        current=self.head #pointer start head node
+        while current.next is not None: #until head isnot none
+            current=current.next #move pointer step  to enxt node
+        current.next=new_node #end
     
     def print_list(self):
         current=self.head
@@ -137,3 +137,39 @@ lk.append(101)
 lk.append(102)
 lk.print_list()
 print(lk.search(101))
+
+
+
+""" linkedlist & queue
+
+
+    def enqueue(self,data):
+        new_node=Node(data)
+        if self.head is None:
+            self.head=new_node
+            return
+        current=self.head
+        while current.next is not  None:
+            current=current.next
+        current.next=new_node
+
+    def dequeue(self):
+        if self.head is None:
+            return "Queue is empty"
+        que_data=self.head.data  #copy first node value
+        self.head=self.head.next #move pointer to next node
+        return que_data #saved value
+
+    linkedlist & stack
+    def push(self, data):
+        new_node=Node(data)
+        new_node.next=self.head #point to next node
+        self.head=new_node #make node first
+    
+    def pop(self):
+        if self.head is None:
+            return "Stack is empty"
+        popped_data=self.head.data #grab first node
+        self.head=self.head.next #move pointer to next
+        return popped_data # return saved data
+"""

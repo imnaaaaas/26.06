@@ -1,9 +1,66 @@
-# Welcome to My Website
-This is the very first paragraph of my text.
-# About Me
-I am learning how to build a static site generator from scratch.
-This is another normal line of text.
+average-case complexity shows how program act when we enter random elements.
+
+difference between amortized. In average-case elements are random, and tells us High probability answer. in amortized it doesnt matter how elements are in, it tells guaranted answer. 
+
+amortized time complexity - is when we count done operations sum and devide on n.it gives us avg n price. in practical we do many small and one big case.big case is rare, demand many time and energy but with small cases we have saved both so at least it doest get big case.
+Describe amortized is 3 methods . aggregate(total cost of n operations/n), accounting(saved many,can buy things) , potential(mathematic function shows saved energy)
+good for shows real guaranted picture,for structure optimization, safe for hacking(if user enter bad data,it will still work fast)
+ its safe fromhacking becausemathematical guarentee based on total numbers of operations,no matter inputs.attacker cant slow down server,cant bypass fast operations to slow one.slow case is mathematically locked.
 
 
-Imna123.
 
+memoization its saved functions answer in cache and used it for next operation.its for optimization, to get fast answer(time complexity),clean code. bad for when we have millions of cache its space complexity. use when fucntion takes many time and repetitive.
+example in web: when user click check weather in london, app has to make request to intenet.if many user click same at same time it will be slower to show them result.with memoization cache will save request for 15 minutes and other many user get answer quicker.to avoid memory crash we use LRU (Least Recently Used) Cache.
+
+
+
+
+
+
+dynamic programing  - DP
+
+
+dp- technique,breaking into smaller, sub-problems.used for performance
+when we need optimal choice(when program repeating calculations)
+Overlapping Sub-problems - using cache/table
+Optimal Substructure- calculating small things,will calculate big thing.(use formula/transition loop)
+
+
+top-down(memoization)  - you start at top big problem and break it down recursively. (recursion+cache dict)
+using call stack + cache.(call stack - running function and where it saved / cache where answers are saved)
+memory O(n)
+minus - in python recursion has limit, if n is so big like 20000, top down crash program. (`RecursionError: maximum recursion depth exceeded`.) for not crash use Bottom-Up (Tabulation) it crash because for fib(20000) if 20000 call stack and it make server slower.and tabulation's time there is one running loop.
+use when we need all subproblems.
+
+
+
+Bottom-Up (Tabulation) - start from bottom.avoid recursions and use loops,fill table/array stepbystep.
+memory O(n) or O(n^2) depend on problem.
+speed fast.use when speed is critical and we need all subproblems.
+
+
+
+do examples of dp
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 

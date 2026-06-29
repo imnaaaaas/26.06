@@ -77,22 +77,36 @@ print(coin_change([1, 2, 5,9], 11))
 
 
 
-
+""" house rob
 def rob_mem(nums):
     cache={}
     def solve(i):
-        if i>=len(nums):
+        if i>=len(nums): #if we are in last house
             return 0
         if i in cache:
             return cache[i]
-        rob_it = nums[i] + solve(i+2)
-        skip_it=solve(i+1)
-        cache[i]=max(rob_it,skip_it)
+        rob_it = nums[i] + solve(i+2)#rob this and skip next house
+        skip_it=solve(i+1)#skip [0] and start from[1]
+        cache[i]=max(rob_it,skip_it) #find max
         return cache[i]
     return solve(0)
 
 print(rob_mem([2, 7, 9, 3, 1]))
+"""
 
+
+def rob(nums):
+    if not nums: return 0
+    if len(nums)==1: return nums[0]
+
+    dp=[0] *len(nums) #array to store max
+    dp[0]=nums[0] #base case
+    dp[1]=max(nums[0], nums[1]) #choose 1 or 2
+    for i in range(2, len(nums)):
+        dp[i]= max(nums[i] + dp[i-2],dp[i-1]) #rob max or skip
+    return dp[-1] #last element in array
+
+print(rob([2, 7, 9, 3, 1]))
 
 
 

@@ -31,12 +31,7 @@ print(fib(8))
 """
 
 
-
-
-
-
-""" tabulation coin_change
-
+""" coin_change
 def coin_change(coins,amount):
     dp=[amount+1]*(amount+1) #initialization
     dp[0]=0#base first
@@ -46,13 +41,9 @@ def coin_change(coins,amount):
                 dp[i]=min(dp[i],dp[i-coin]+1) #if we get better deal with that coin
     return dp[amount] if dp[amount]!=amount+1 else -1 #if amount is unreachable and if it is return -1
 print(coin_change([1,2,3,4,5], 11))
-"""
 
 
 
-
-
-""" memoization choin_change
 def coin_change(coins,amount):
     cache = {}
     def solve(remaining):
@@ -75,9 +66,7 @@ def coin_change(coins,amount):
 print(coin_change([1, 2, 5,9], 11))
 """
 
-
-
-""" house rob
+""" rob memoization
 def rob_mem(nums):
     cache={}
     def solve(i):
@@ -89,12 +78,13 @@ def rob_mem(nums):
         skip_it=solve(i+1)#skip [0] and start from[1]
         cache[i]=max(rob_it,skip_it) #find max
         return cache[i]
-    return solve(0)
+    return solve(0)#top-down
 
 print(rob_mem([2, 7, 9, 3, 1]))
 """
 
 
+""" rob tabulation
 def rob(nums):
     if not nums: return 0
     if len(nums)==1: return nums[0]
@@ -107,6 +97,87 @@ def rob(nums):
     return dp[-1] #last element in array
 
 print(rob([2, 7, 9, 3, 1]))
+"""
+
+
+""" palindrome
+def is_pal(name):
+    left=0
+    right=len(name)-1
+    while left<right:
+        if name[left] != name[right]:
+            return False
+        else:
+            left+=1
+            right-=1
+    return True
+
+print(is_pal("asdasd"))
+"""
+
+"""climb_stairs
+def climb_stairs(n):
+    cache={}
+    def solve(i):
+        if i < 0: 
+            return 0
+        if i == 0 or i == 1: 
+            return 1
+        if i in cache:
+            return cache[i]
+        cache[i]=solve(i-1)+solve(i-2)
+        return cache[i]
+    return solve(n)
+
+          
 
 
 
+def climb_stairs2(n):
+    if n<=1:
+        return 1
+    table=[0]*(n+1)
+    table[0]=1
+    table[1]=1
+    for i in range(2, n+1):
+        table[i]=table[i-1]+table[i-2]
+    return table[i]
+
+print(climb_stairs2(5))
+"""     
+
+
+""" find max D&C
+def find_max(nums):
+    if not nums:
+        return None
+    return find_max_dc(nums, 0 , len(nums)-1)
+
+def find_max_dc(nums, low, high):
+    if low == high:
+        return nums[low]
+    mid=(low+high)//2 #devide
+    left_max=find_max_dc(nums,low,mid)#conquer
+    right_max=find_max_dc(nums,mid +1, high)#conquer
+    if left_max>right_max:
+        return left_max
+    else:
+        return right_max
+
+print(find_max([1,2,3,465, 32,12,15,67]))
+"""
+
+
+""" D&C quick_sort
+def quick_sort(nums):
+    if len(nums) <=1:
+        return nums
+    pivot=nums[len(nums)//2]
+    left= [x for x in nums if x< pivot]
+    mid = [x for x in nums if x ==pivot]
+    right = [x for x in nums if x>pivot]
+    return quick_sort(left) + mid + quick_sort(right)
+
+print(quick_sort([1,4,5,2,6,9,64,2,6]))
+
+"""

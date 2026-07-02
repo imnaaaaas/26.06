@@ -181,3 +181,56 @@ def quick_sort(nums):
 print(quick_sort([1,4,5,2,6,9,64,2,6]))
 
 """
+
+
+
+""" #pascal triangle
+
+def method(n):
+    if n==0:
+        return []
+    if n==1:
+        return [[1]]
+    lastRow=method(n-1)#get last rows
+    newRow=[1]*n #fills new rows with 1
+    for i in range(1,n-1): #get from first index and last index -1
+        newRow[i]=lastRow[-1][i-1]+lastRow[-1][i] #get sum of middle numbrs
+    lastRow.append(newRow)
+    return lastRow
+print(method(5))
+
+
+def method(n):
+    res=[1]
+    for i in range(n):
+        newRow=[0]*(len(res)+1) #new rowbigger thanbefore 
+        for j in range(len(res)): #every num on prevRow
+            newRow[j]+=res[j] #add num on left 
+            newRow[j+1]+=res[j] #add same num onright
+        res=newRow
+    return res
+print(method(3))
+"""
+
+
+""" from triangle choose min sum
+
+def triangle_min(triangle):
+    for i in range(len(triangle)-2,-1,-1):#start,stop,step bottom top
+        for j in range(len(triangle[i])):#goes each row
+            triangle[i][j]+=max(triangle[i+1][j],triangle[i+1][j+1]) #add min from left and right
+    return triangle[0][0]
+
+print(triangle_min([[2],[3,4],[6,5,7],[4,1,8,3]]))
+"""
+
+def is_subsequence(s,t):
+    i=0
+    for j in t:
+        if j == s[i]:
+            i+=1
+        if i==len(s):
+            return True
+    return False
+
+print(is_subsequence("ki", "giokirgi"))

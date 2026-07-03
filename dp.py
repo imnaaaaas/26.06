@@ -2,7 +2,8 @@
 def fib(n):
     if n<=1:
         return 1
-    return fib(n-1)+fib(n-2)
+    return fib(n-1)+fib(n-2)   
+    its 2^n because its repeating calculations
 """
 
 """ with memoization
@@ -14,20 +15,37 @@ def fib(n):
         return 1
     cache[n]=fib(n-1)+fib(n-2) #fill cache with neeeded
     return cache[n] #return 
+
+    its time and space linear because we only count it one and saves them in cache
 """
 
-""" tabulation
+"""  fib tabulation dp
 def fib(n):
+    #time linear / space linear
     if n<=1:
         return n
-    table = [0]*(n+1) #base cases
+    table=[0]*(n+1)
     table[0]=0
     table[1]=1
-    for i in range(2,n+1): #2 to n fill linear
+    for i in range(2,n+1):
         table[i]=table[i-1]+table[i-2]
-    return table[n]#final last item
+    return table[n]
+    
 
-print(fib(8))
+
+    #time is linear and space is constant
+    if n<=1:
+        return n
+    prev2=0
+    prev1=1
+    for i in range(2,n+1):
+        current=prev1+prev2
+        prev2=prev1
+        prev1=current
+    return prev1
+
+
+print(fib(5))
 """
 
 
@@ -184,6 +202,8 @@ print(quick_sort([1,4,5,2,6,9,64,2,6]))
 
 
 
+
+
 """ #pascal triangle
 
 def method(n):
@@ -194,7 +214,7 @@ def method(n):
     lastRow=method(n-1)#get last rows
     newRow=[1]*n #fills new rows with 1
     for i in range(1,n-1): #get from first index and last index -1
-        newRow[i]=lastRow[-1][i-1]+lastRow[-1][i] #get sum of middle numbrs
+        newRow[i]=lastRow[-1][i-1]+lastRow[-1][i] #get sum of middle numbrs left right
     lastRow.append(newRow)
     return lastRow
 print(method(5))
@@ -224,13 +244,70 @@ def triangle_min(triangle):
 print(triangle_min([[2],[3,4],[6,5,7],[4,1,8,3]]))
 """
 
+
+"""is_subsequence
 def is_subsequence(s,t):
+    if len(s)==0:
+        return True
     i=0
     for j in t:
-        if j == s[i]:
+        if j==s[i]:
             i+=1
         if i==len(s):
             return True
     return False
+"""
 
-print(is_subsequence("ki", "giokirgi"))
+
+"""#find max word in sequence 
+def method(sequence,word):
+    i=1
+    while word*i in sequence:#word ="abc" word*2="abcabc"
+        i+=1
+    return i-1
+
+print(method("ababc", "ba"))
+"""
+
+"""tribonacci
+def tribonacci(n):
+    if n==0:
+        return 0
+    elif n==1 or n==2:
+        return 1
+
+    dp=[0]*(n+1)
+    dp[1]=dp[2]=1
+    for i in range(3,n+1):
+        dp[i]=dp[i-1]+dp[i-2]+dp[i-3]
+    return dp[i]
+print(tribonacci(5))
+"""
+
+
+"""#remove duplicates
+def method(nums):
+    #1
+    k=0#last known unique
+    for j in range(1, len(nums)):
+        if nums[j] != nums[k]:
+            k+=1
+            nums[k]=nums[j] #when unique is found overwrite at k 
+    return k+1
+
+    #2 twopointer
+    k=1
+    for j in range(1,len(nums)):
+        if nums[j] != nums[k-1]: #currect to previous
+            nums[k]=nums[j] #placins unique to k 
+            k+=1
+    return k
+"""
+
+
+
+
+#learn how time/space complexity works 
+#@url-cache decorator generator
+
+#binary search / DFS / BFS for practise to get algorithms

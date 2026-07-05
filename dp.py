@@ -330,3 +330,49 @@ print(binary_serch(9,[-1,0,3,5,9,12]))
 #space complexity o(1)
 # """
 
+"""#merge sort
+
+def method(nums1,m,nums2,n):
+    last=n+m-1 #last index
+    while m>0 and n>0:
+        if nums1[m-1]>nums2[n-1]:
+            nums1[last]=nums1[m-1]
+            m-=1
+        else:
+            nums1[last]=nums2[n-1]
+            n-=1
+        last-=1
+    while n>0:
+        nums1[last] = nums2[n-1]
+        n,last=n-1,last-1
+"""
+
+""" roman numbers to integer
+def roman(s):
+    sym = {
+                'I': 1,
+                'V': 5,
+                'X': 10,
+                'L': 50,
+                'C': 100,
+                'D': 500,
+                'M': 1000
+            }
+    res=0
+    for i in range(len(s)):
+        if i+1<len(s) and sym[s[i]] < sym[s[i+1]]:
+            res-=sym[s[i]]
+        else:
+            res+=sym[s[i]]
+    return res
+"""        
+def method(strs): 
+    res=""
+    for i in range(len(strs[0])):
+        for s in strs:
+            if i ==len(s) or s[i] !=strs[0][i]:
+                return res
+        res+=strs[0][i]
+    return res
+
+print(method(["flower","flow","flight"]))

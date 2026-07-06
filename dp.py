@@ -202,8 +202,6 @@ print(quick_sort([1,4,5,2,6,9,64,2,6]))
 
 
 
-
-
 """ #pascal triangle
 
 def method(n):
@@ -219,6 +217,8 @@ def method(n):
     return lastRow
 print(method(5))
 
+#time and space is n^2
+
 
 def method(n):
     res=[1]
@@ -230,6 +230,9 @@ def method(n):
         res=newRow
     return res
 print(method(3))
+    #space complexity will be linear(saved current rows) 
+z    #time will be n^2
+
 """
 
 
@@ -238,7 +241,7 @@ print(method(3))
 def triangle_min(triangle):
     for i in range(len(triangle)-2,-1,-1):#start,stop,step bottom top
         for j in range(len(triangle[i])):#goes each row
-            triangle[i][j]+=max(triangle[i+1][j],triangle[i+1][j+1]) #add min from left and right
+            triangle[i][j]+=min(triangle[i+1][j],triangle[i+1][j+1]) #add min from left and right
     return triangle[0][0]
 
 print(triangle_min([[2],[3,4],[6,5,7],[4,1,8,3]]))
@@ -257,6 +260,7 @@ def is_subsequence(s,t):
             return True
     return False
 """
+
 
 
 """#find max word in sequence 
@@ -308,9 +312,12 @@ def method(nums):
 
 
 #learn how time/space complexity works 
-#@url-cache decorator generator
+
+#@lru-cache decorator generator
+
 
 #binary search / DFS / BFS for practise to get algorithms
+
 
 """binary_serch
 def binary_serch(target,nums):
@@ -330,8 +337,9 @@ print(binary_serch(9,[-1,0,3,5,9,12]))
 #space complexity o(1)
 # """
 
-"""#merge sort
 
+"""#merge sort
+#time complexity O(logn) space O(n) 
 def method(nums1,m,nums2,n):
     last=n+m-1 #last index
     while m>0 and n>0:
@@ -345,7 +353,11 @@ def method(nums1,m,nums2,n):
     while n>0:
         nums1[last] = nums2[n-1]
         n,last=n-1,last-1
+    return nums1
+
+print(method([2,8,3,0,0,0],3,[1,5,6],3))
 """
+
 
 """ roman numbers to integer
 def roman(s):
@@ -366,13 +378,52 @@ def roman(s):
             res+=sym[s[i]]
     return res
 """        
+
+
+""" count max sufixs
 def method(strs): 
+
     res=""
-    for i in range(len(strs[0])):
+    for i in range(len(strs[0])):#first word 0-5
         for s in strs:
             if i ==len(s) or s[i] !=strs[0][i]:
                 return res
         res+=strs[0][i]
     return res
-
 print(method(["flower","flow","flight"]))
+"""
+
+
+
+
+
+#decorator url cache 
+#decorators static method class methods 
+
+import functools
+import time
+"""
+@lru_cache(maxsize=None)
+def fib(n):
+    if n<2:
+        return n
+    return fib(n-1)+fib(n-2)
+
+
+def main():
+    start=time.time()
+    print(fib(25))
+    end=time.time()
+    print(f"{end - start:.6f}")
+
+if __name__=="__main__":
+    main()
+"""
+
+
+@functools.cache
+def fib(n):
+    if n<=2:
+        return 1
+    return fib(n-1)+fib(n-2)
+print(fib(10))

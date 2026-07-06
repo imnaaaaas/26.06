@@ -24,7 +24,7 @@ dp- technique,breaking into smaller, sub-problems.used for performance
 when we need optimal choice(when program repeating calculations)
 Overlapping Sub-problems - using cache/table
 Optimal Substructure- calculating small things,will calculate big thing.(use formula/transition loop)
-
+State Transition Equation - simply a formal mathematical formula that explains how to solve a larger problem using the answers from smaller, already-solved sub-problems.
 
 top-down(memoization)  - you start at top big problem and break it down recursively. (recursion+cache dict)
 using call stack + cache.(call stack - running function and where it saved / cache where answers are saved)
@@ -43,6 +43,19 @@ speed fast.use when speed is critical and we need all subproblems.
 do examples of dp
 
 
+divide and conquer - make big problems into smalls, find each and combine.
+divide - conquer(find with recursion) - combine
+difference from dp subproblems doesnt repeats, cache(memoization) isnot needed
+
+- `# 1. Base Case (1 or 0 elements left)`
+
+- `# 2. Divide (Find mid or pivot)`
+
+- `# 3. Conquer (Recursive calls)`
+
+- `# 4. Combine (The logic to merge results)`
+
+Decrease and Conquer reduces the problem down to only one smaller piece. You throw the rest away.
 
 
 
@@ -52,15 +65,53 @@ do examples of dp
 
 
 
+lru
+url cahce - we want save url for a while,same command doesnt run.Caching saves the response/data of a URL.
+
+generator - function use yields and return meaning one by one,beside creating whole list for one time.(etapobrivad abrunebs monacemebs)
 
 
+practice, keywords,next stop iteration 
+cutom generator 
 
 
+decorator - function which uses other functions act without changing his code.for autorizations(funqciis gapartoeba)
+
+decorator - modify or extend behavior of functions,method or class without permanently changing source code
 
 
+decoratorit lsitshi luwebs amoagdebs
+
+import functools
+
+1)@functools.cache                   functools.lru_cache
+decorator 
+memorize functions previous input and output.
+use case : heavy math or slow recursions / When pulling unchanged data from an API/URL repeatedly.
+
+Difference: `@cache` has no limits,grow forever and remember every single unique value until program stop.risk of crash, milions of inouts. fast 
+@functools.lru_cache(maxsize) has fixed size limits.when its full evicts leas recently used(lru) and make room for new data. no crash safely manages  and recycles memory. slow
 
 
+2) @functools.wraps ??????
+
+every functions has identity.own name(__name__) and documentation (__doc__) . metadata is crucial for debbuging,  logging.
+def method(n): 
+  @functools.wraps(n)
 
 
+3)@functools.partial  ??
+tool freezes some of the arguments of an existing function, creating a new, simpler version of it.
+use case: 
+example(
+def send_request(host, api_key, endpoint, data):
+  print(f"Sending to {host}/{endpoint}...")
 
- 
+ local_api = partial(send_request, "https://api.mycompany.com", "SECRET_KEY_123")
+local_api("users", {"name": "Gio"})
+local_api("orders", {"id": 99})
+local_api("products", {"sku": "ABC"})
+)
+
+
+decorators

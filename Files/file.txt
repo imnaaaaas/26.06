@@ -137,3 +137,12 @@ kwargs - becoms dictionary whatever keyword arguments {"age":22}
 
 
 if main == __name__ ????????? how it works
+
+
+generator - functions pauses at each yield,gives one value,remember where stopped
+and continue from that spot next time.
+
+return  - function end comp,one value
+yield - function pauses, gives one value, resume
+
+lazy evaluation - values are computed one time,on demand.

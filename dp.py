@@ -420,24 +420,21 @@ if __name__=="__main__":
     main()
 """
 
-
 def isOdd(func):
     @functools.wraps(func)
     def wrapper(*args,**kwargs):
-            result=method(*args,**kwargs)
-            return result
+        nums=func(*args,**kwargs)
+        evens=[n for n in nums if n%2==0]
+        if not evens:
+            return "no even numbers"
+        return evens
     return wrapper
 
-
+@isOdd
 def method(nums):
     if len(nums)==0:
         return "empty list"
-    evens=[]
-    for i in range(len(nums)):
-        if nums[i]%2==0:
-            evens.append(nums[i])
-    if len(evens) ==0:
-        return "no even numbers"
-    return evens
+    return nums
 
-print(method([1,2,35,6,8]))
+
+print(method([1,2,3,4,5,6,]))

@@ -74,9 +74,7 @@ generator - function use yields and return meaning one by one,beside creating wh
 practice, keywords,next stop iteration 
 cutom generator 
 
-
 decorator - function which uses other functions act without changing his code.for autorizations(funqciis gapartoeba)
-
 decorator - modify or extend behavior of functions,method or class without permanently changing source code
 
 
@@ -89,8 +87,11 @@ decorator
 memorize functions previous input and output.
 use case : heavy math or slow recursions / When pulling unchanged data from an API/URL repeatedly.
 
-Difference: `@cache` has no limits,grow forever and remember every single unique value until program stop.risk of crash, milions of inouts. fast 
-@functools.lru_cache(maxsize) has fixed size limits.when its full evicts leas recently used(lru) and make room for new data. no crash safely manages  and recycles memory. slow
+Difference: `@cache` has no limits,grow forever and remember every single
+ unique value until program stop.risk of crash, milions of inouts. fast 
+@functools.lru_cache(maxsize) has fixed size limits.when its full evicts
+ leas recently used(lru) and make room for new data. no crash safely manages  and recycles memory. slow
+
 
 
 2) @functools.wraps ??????
@@ -114,4 +115,25 @@ local_api("products", {"sku": "ABC"})
 )
 
 
-decorators
+
+
+decorator fucntion which takes another function to input,
+wraps with extra behavior and return new function,without changing original code.
+
+
+@staticmethod - method inside class that doesnt need self.it like function
+inside class
+@classmethod - method that receives class(cls) itself instead of instance(self)
+@functools.lru_cache has fixed size limit(masxsize). when its full evicts lru and make room
+for new data.no crash safeley manages and recycles memeory
+@functools.wraps - used inside custom decorator to preserve original functions (__name__),
+(__doc__) name/docstring.metadata.
+
+
+
+args - becomes tuple of positional arguments ("luka", 22)
+kwargs - becoms dictionary whatever keyword arguments {"age":22}
+
+
+
+if main == __name__ ????????? how it works

@@ -399,10 +399,10 @@ print(method(["flower","flow","flight"]))
 
 #decorator url cache 
 #decorators static method class methods 
-
-import functools
 import time
+import functools
 """
+
 @lru_cache(maxsize=None)
 def fib(n):
     if n<2:
@@ -421,29 +421,23 @@ if __name__=="__main__":
 """
 
 
-@functools.cache
-def fib(n):
-    if n<=2:
-        return 1
-    return fib(n-1)+fib(n-2)
-#print(fib(10))
-
-
-
-def changecase(func):
+def isOdd(func):
     @functools.wraps(func)
-    def myinner(*args): 
-        for num in args:
-            if num%2==0:
-                return num 
-        return func(*args)
-    return myinner
-
-          
-@changecase
-def myfunction(*args):
-    return "no result"
-    
+    def wrapper(*args,**kwargs):
+            result=method(*args,**kwargs)
+            return result
+    return wrapper
 
 
-print(myfunction(1,2,3,4,2))
+def method(nums):
+    if len(nums)==0:
+        return "empty list"
+    evens=[]
+    for i in range(len(nums)):
+        if nums[i]%2==0:
+            evens.append(nums[i])
+    if len(evens) ==0:
+        return "no even numbers"
+    return evens
+
+print(method([1,2,35,6,8]))

@@ -420,7 +420,9 @@ if __name__=="__main__":
     main()
 """
 
-def isOdd(func):
+
+"""
+def isEven(func):
     @functools.wraps(func)
     def wrapper(*args,**kwargs):
         nums=func(*args,**kwargs)
@@ -430,11 +432,85 @@ def isOdd(func):
         return evens
     return wrapper
 
-@isOdd
+@isEven
 def method(nums):
     if len(nums)==0:
         return "empty list"
     return nums
 
 
-print(method([1,2,3,4,5,6,]))
+"""
+
+
+""" count words in sentence generator / decorator
+
+#generator
+def get_word(sentences):
+    for sentence in sentences:
+        words=sentence.lower().split()
+        for word in words:
+            yield word
+#decorator
+def isRepeat(func):
+    @functools.wraps(func)
+    def wrapper(*args,**kwargs):
+        print(func.__name__)
+        star= time.time()
+        result=func(*args,**kwargs)
+        end=time.time
+        return result
+    return wrapper
+#run function
+@isRepeat
+def method2(sentences):
+    count={}
+    for word in get_word(sentences):
+        if word in count:
+            count[word]+=1
+        else:
+            count[word]=1
+    return count
+
+sentences = [
+    "The quick brown fox jumps over the lazy dog",
+    "The dog barks at the fox",
+    "Quick foxes are quick and clever"
+ ]
+print(method2(sentences))
+"""
+
+
+""" generators
+
+def fib(n):
+    a,b=1,1
+    for _ in range(n):
+        yield a
+        a,b = b,a+b
+
+for val in fib(8):
+    print(val)"""
+
+
+"""
+def running():
+    total=0
+    while True:
+        value = yield total
+        total+=value
+
+rn = running()
+next(rn)
+print(rn.send(10))
+print(rn.send(5))
+print(rn.send(20))
+"""
+
+def flatten(nested_list):
+    for item in nested_list:
+        if isinstance(item,list):
+            yield from (flatten(item))
+        else:
+            yield item
+        
+print(list(flatten([1, [2, 3, [4, 5]], 6, [7, [8, [9]]]])))

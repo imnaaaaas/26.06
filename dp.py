@@ -506,11 +506,13 @@ print(rn.send(5))
 print(rn.send(20))
 """
 
-def flatten(nested_list):
-    for item in nested_list:
+
+def flatten(nest_List):
+    for item in nest_List:
         if isinstance(item,list):
-            yield from (flatten(item))
+            yield from flatten(item)
         else:
             yield item
-        
-print(list(flatten([1, [2, 3, [4, 5]], 6, [7, [8, [9]]]])))
+
+
+print(list(flatten([1, [2, [3, 4], 5], 6, [7, [8, [9]]]])))

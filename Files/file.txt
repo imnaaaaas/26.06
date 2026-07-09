@@ -128,8 +128,9 @@ inside class
 for new data.no crash safeley manages and recycles memeory
 @functools.wraps - used inside custom decorator to preserve original functions (__name__),
 (__doc__) name/docstring.metadata.
+@property - it make method look and used like attribute.
 
-
+used @app.route() (Flask/FastAPI), @login_required, @lru_cache
 
 args - becomes tuple of positional arguments ("luka", 22)
 kwargs - becoms dictionary whatever keyword arguments {"age":22}
@@ -146,3 +147,6 @@ return  - function end comp,one value
 yield - function pauses, gives one value, resume
 
 lazy evaluation - values are computed one time,on demand.
+
+
+yield from ??????????

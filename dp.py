@@ -388,7 +388,7 @@ def method(strs):
         for s in strs:
             if i ==len(s) or s[i] !=strs[0][i]:
                 return res
-        res+=strs[0][i]
+        res+=strs[0][i] 
     return res
 print(method(["flower","flow","flight"]))
 """
@@ -401,8 +401,9 @@ print(method(["flower","flow","flight"]))
 #decorators static method class methods 
 import time
 import functools
-"""
 
+
+""" fib decorator
 @lru_cache(maxsize=None)
 def fib(n):
     if n<2:
@@ -421,7 +422,7 @@ if __name__=="__main__":
 """
 
 
-"""
+""" even decorator
 def isEven(func):
     @functools.wraps(func)
     def wrapper(*args,**kwargs):
@@ -442,6 +443,8 @@ def method(nums):
 """
 
 
+
+
 """ count words in sentence generator / decorator
 
 #generator
@@ -457,7 +460,7 @@ def isRepeat(func):
         print(func.__name__)
         star= time.time()
         result=func(*args,**kwargs)
-        end=time.time
+        end=time.time()
         return result
     return wrapper
 #run function
@@ -479,7 +482,6 @@ sentences = [
 print(method2(sentences))
 """
 
-
 """ generators
 
 def fib(n):
@@ -492,27 +494,89 @@ for val in fib(8):
     print(val)"""
 
 
-"""
-def running():
+""" yield send
+def run1():
     total=0
     while True:
         value = yield total
         total+=value
-
-rn = running()
-next(rn)
-print(rn.send(10))
-print(rn.send(5))
-print(rn.send(20))
+rn1=run1()
+next(rn1)
+print(rn1.send(10))
+print(rn1.send(10))
+print(rn1.send(10))
 """
 
-
+""" yield from
 def flatten(nest_List):
     for item in nest_List:
         if isinstance(item,list):
             yield from flatten(item)
         else:
             yield item
-
-
 print(list(flatten([1, [2, [3, 4], 5], 6, [7, [8, [9]]]])))
+"""
+
+
+
+"""class decorator
+class CountCalls:
+    def __init__(self, func):
+        self.func = func #save original fucntion inseide say_hi 
+        self.calls = 0
+
+    def __call__(self,*args,**kwargs):
+        self.calls+=1
+        return self.func(*args,**kwargs) #call original fucntion
+
+@CountCalls
+def say_hi():
+    print("hi")
+
+say_hi()
+say_hi()
+print(say_hi.calls)  #how many times say_hi was called 2"""
+
+
+""" iterator
+class EvenNumbers():
+    def __init__(self,limit):
+        self.limit=limit
+        self.current=0
+    def __iter__(self):
+        return self
+    def __next__(self,):
+        if self.current == self.limit:
+            raise StopIteration
+        self.current+=2
+        return self.current
+        
+for num in EvenNumbers(10):
+    print(num)
+"""
+
+"""
+class FibonacciIterator:
+    def __init__(self, stop=10):
+        self._stop = stop
+        self._index = 0
+        self._current = 0
+        self._next = 1
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self._index < self._stop:
+            self._index += 1
+            fib_number = self._current
+            self._current, self._next = (
+                self._next,
+                self._current + self._next,
+            )
+            return fib_number
+        else:
+            raise StopIteration
+        
+for fib_number in FibonacciIterator():
+        print(fib_number)"""

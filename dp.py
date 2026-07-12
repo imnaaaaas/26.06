@@ -555,28 +555,96 @@ for num in EvenNumbers(10):
     print(num)
 """
 
+"""#iteration fib
+class fib:
+    def __init__(self,limit):
+        self.limit=limit
+        
+    def __iter__(self):
+        self.a=0
+        self.b=1
+        self.count=0
+        return self
+    
+    def __next__(self):
+        while self.count >= self.limit:
+           raise StopIteration
+        value=self.a
+        self.a,self.b=self.b,self.a+self.b
+        self.count+=1
+        return value
+        
+f=fib(6)
+for num in f:
+    print(num)
 """
-class FibonacciIterator:
-    def __init__(self, stop=10):
-        self._stop = stop
-        self._index = 0
-        self._current = 0
-        self._next = 1
+
+
+""" linkedlist iterator
+class Node:
+    def __init__(self,data):
+        self.data=data
+        self.next=None
+
+class LinkedList:
+    def __init__(self):
+        self.head=None
+
+    def add(self,data):
+        new_node=Node(data)
+        if self.head is None:
+            self.head=new_node
+            return
+        current=self.head
+        while current.next is not None:
+            current=current.next
+        current.next=new_node
+
+    #def __iter__(self):
+    current=current.self
+    while current:
+        print(current.data)
+        current=current.next
 
     def __iter__(self):
+        self.current=self.head
         return self
-
+    
     def __next__(self):
-        if self._index < self._stop:
-            self._index += 1
-            fib_number = self._current
-            self._current, self._next = (
-                self._next,
-                self._current + self._next,
-            )
-            return fib_number
-        else:
+        if self.current == None:
             raise StopIteration
-        
-for fib_number in FibonacciIterator():
-        print(fib_number)"""
+        value = self.current.data
+        self.current = self.current.next
+        return value
+
+
+ll = LinkedList()
+ll.add(10)
+ll.add(20)
+ll.add(30)
+for x in ll:
+    print(x)
+"""
+
+
+class CityStreet:
+    def __init__(self,data):
+        self.data=data
+        self.index=0 #last postion
+    """def __iter__(self):
+        return self
+    def __next__(self):
+        if self.index>=len(self.data):
+            raise StopIteration
+        result=self.data[self.index]
+        self.index+=1
+        return result"""
+    def city_generator(data):
+        for city,street in data:
+            yield city, street
+
+data = [("თბილისი", "რუსთაველი"), ("ქუთაისი", "თამარის"), ("ბათუმი", "ჭავჭავაძის")]
+
+it=CityStreet(data)
+for city,street in it:
+    print(city,street)

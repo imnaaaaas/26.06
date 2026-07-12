@@ -138,18 +138,21 @@ kwargs - becoms dictionary whatever keyword arguments {"age":22} nebismieri raod
 
 if name == __main__ ????????? how it works
 
-generator - functions pauses at each yield,gives one value,remember where stopped
-and continue from that spot next time.
-
-iterator nawil nawil abrunebs pasuxebs
-every generator is iterator, not every iterator is not generator
-
-iterator has __iter__(self): return self and __next__(self): returns value where it stops
-
-stopiteration is exception  whena automaticly raise(agdebs), when iterator has no other value.
+---------------
 
 iterable aris obieqti romelsac aqvs __iter__() methodi (list,str,dict)
 yvelaperi rac for loopshi gavatarebt.  parent of iterator
+iterable doesn't need __next__ itself, it just needs to know how to produce something that has __next__
+
+
+iterator nawil nawil abrunebs pasuxebs
+every generator is iterator, not every iterator is not generator
+iterator has __iter__(self): return self and __next__(self): returns value where it stops
+
+stopiteration is exception  when automaticly raise(agdebs), when iterator has no other value.
+
+generator - functions pauses at each yield,gives one value,remember where stopped
+and continue from that spot next time.
 
 
 return  - function end complitely,one value
@@ -157,14 +160,14 @@ yield - function pauses, gives one value, resume
 
 lazy evaluation - values are computed one time,on demand.
 
-yield from ???
+yield from / like get item from other list or method
+
+
 
 
 
 iteratorze did dataze generatorit gadavuaro
 
-
-klasi -data - 
 
 qalaqi-qucha for loop - procesi  generatorit gavaketo   mteli data ertianad roar daaloados 
 

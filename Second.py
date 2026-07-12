@@ -131,7 +131,7 @@ class LinkedList:
 
 
 
-lk=LinkedList();
+lk=LinkedList()
 lk.append(10)
 lk.append(101)
 lk.append(102)

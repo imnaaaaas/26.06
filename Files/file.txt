@@ -145,9 +145,13 @@ yvelaperi rac for loopshi gavatarebt.  parent of iterator
 iterable doesn't need __next__ itself, it just needs to know how to produce something that has __next__
 
 
+python object that impelements two special method.
+__iter__(self): return self / returns the self which hold current instance
+iterator __next__(self): returns value where it stops
 iterator nawil nawil abrunebs pasuxebs
 every generator is iterator, not every iterator is not generator
-iterator has __iter__(self): return self and __next__(self): returns value where it stops
+
+
 
 stopiteration is exception  when automaticly raise(agdebs), when iterator has no other value.
 
@@ -164,6 +168,8 @@ yield from / like get item from other list or method
 
 
 
+context menager an object that handles
+the setup and teardown of resources like file streams, network connections, and locks.
 
 
 iteratorze did dataze generatorit gadavuaro
@@ -171,3 +177,62 @@ iteratorze did dataze generatorit gadavuaro
 
 qalaqi-qucha for loop - procesi  generatorit gavaketo   mteli data ertianad roar daaloados 
 
+
+
+
+--
+3 type of iterator
+1)clasic which return original code output
+2) return formated and changed output
+3)doesnt need input
+
+
+
+oop practice 
+
+encapsulation - building data and methods together inside class,conrolling access to data 
+private/protected and allow change with getter setter
+
+abstraction - hiding complex implementation details and show user essential functions
+
+
+class Car:
+    def start_engine(self):
+        self.__check_fuel()
+        self.__ignite()
+        print("Engine started!")
+
+    def __check_fuel(self):   # hidden detail
+        print("Checking fuel...")
+
+    def __ignite(self):       # hidden detail
+        print("Igniting...")
+
+car = Car()
+car.start_engine()   #
+
+
+
+
+polymorphism - method with same name in different classes has different result.
+
+(
+class Dog:
+  def speak(self):
+    return "woof"
+class Cat:
+  def speak(self):
+    return "meow"
+  
+animals = [Dog(), Cat()]
+for animal in animals:
+  print(animal.speak())
+
+
+)
+
+
+
+inheritence - child class inherit attributes and and method from parrent class
+
+magalitebi gavaketo 15.07

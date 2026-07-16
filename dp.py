@@ -538,46 +538,7 @@ say_hi()
 print(say_hi.calls)  #how many times say_hi was called 2"""
 
 
-""" iterator
-class EvenNumbers():
-    def __init__(self,limit):
-        self.limit=limit
-        self.current=0
-    def __iter__(self):
-        return self
-    def __next__(self,):
-        if self.current == self.limit:
-            raise StopIteration
-        self.current+=2
-        return self.current
-        
-for num in EvenNumbers(10):
-    print(num)
-"""
 
-"""#iteration fib
-class fib:
-    def __init__(self,limit):
-        self.limit=limit
-        
-    def __iter__(self):
-        self.a=0
-        self.b=1
-        self.count=0
-        return self
-    
-    def __next__(self):
-        while self.count >= self.limit:
-           raise StopIteration
-        value=self.a
-        self.a,self.b=self.b,self.a+self.b
-        self.count+=1
-        return value
-        
-f=fib(6)
-for num in f:
-    print(num)
-"""
 
 
 """ linkedlist iterator
@@ -627,18 +588,18 @@ for x in ll:
 """
 
 
-class CityStreet:
+"""class CityStreet:
     def __init__(self,data):
         self.data=data
         self.index=0 #last postion
-    """def __iter__(self):
+    #def __iter__(self):
         return self
     def __next__(self):
         if self.index>=len(self.data):
             raise StopIteration
         result=self.data[self.index]
         self.index+=1
-        return result"""
+        return result#
     def city_generator(data):
         for city,street in data:
             yield city, street
@@ -647,4 +608,95 @@ data = [("თბილისი", "რუსთაველი"), ("ქუთა
 
 it=CityStreet(data)
 for city,street in it:
-    print(city,street)
+    print(city,street)"""
+
+
+
+
+# we use _index in init to make it private and dont be callable out of class 
+
+""" fib iterator
+class fib:
+    def __init__(self,stop=5):
+        self._stop=5
+        self._current=0
+        self._index=0
+        self._next=1
+    
+    def __iter__(self):
+        return self
+    def __next__(self):
+        if self._index <self._stop:
+            self._index+=1
+            fib_number = self._current
+            self._current , self._next =(self._next, self._current + self._next)
+            return fib_number
+        else: 
+            raise StopIteration
+
+    
+for item in fib():
+    print(item)
+
+"""
+
+
+""" fib generator
+def fib(stop=5):
+    current_next , next_index = 0 , 1
+    for _ in range(0,stop):
+        fib_num=current_next
+        current_next, next_index = (next_index, current_next + next_index)
+        yield fib_num
+
+k=list(fib(10))
+print(k)
+"""
+
+
+class Vehicle:
+    def __init__(self, brand, model, price_per_day):
+        self._brand=brand
+        self._model=model
+        self.__price_per_day=price_per_day
+    def get_price(self):
+        return self.__price_per_day
+    
+    def rental_info(self):
+        print(f"{self._brand} {self._model} costs {self.get_price()} per day")
+    def start(self):
+        print("Starting vehicle...")
+
+class Car(Vehicle):
+    def __init__(self, brand, model, price_per_day, door):
+        super().__init__(brand,model,price_per_day)
+        self._door=door
+    def __check_fule(self):
+        print("gas is full")
+    def __ignite_engine(self):
+        print("car is ready")
+    def start(self):
+        self.__check_fule()
+        self.__ignite_engine()
+        print("Car is ready to drive!")
+
+class Motorcycle(Vehicle):
+    def __init__(self, brand, model, price_per_day,has_sidecar ):
+        super().__init__(brand,model,price_per_day)
+        self._has_sidecar = has_sidecar
+    def __kick_start(self):
+        print("its ready")
+    def start(self):
+        self.__kick_start()
+        print("Motorcycle is ready to ride!")
+
+car1 = Car("Toyota", "Corolla", 40, 4)
+moto1 = Motorcycle("Honda", "CBR", 25, False)
+
+vehicles = [car1, moto1]
+for vehicle in vehicles:
+    vehicle.start()   
+
+car1.rental_info()
+
+print(car1.get_price()) 

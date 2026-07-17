@@ -653,7 +653,7 @@ k=list(fib(10))
 print(k)
 """
 
-
+""" oops 
 class Vehicle:
     def __init__(self, brand, model, price_per_day):
         self._brand=brand
@@ -699,4 +699,22 @@ for vehicle in vehicles:
 
 car1.rental_info()
 
-print(car1.get_price()) 
+print(car1.get_price())
+ """
+
+
+
+def get_sorted_evens_from_matrix(matrix):
+    
+    for column in matrix:
+        sorted_column = sorted(column)
+        for column in sorted_column:
+            if column%2==1:
+                yield column
+
+matrix = [
+    [5, 3, 8, 2],
+    [10, 1, 4,5],
+    [7, 9, 6,19]
+]
+print(list(get_sorted_evens_from_matrix(matrix)))
